@@ -54,6 +54,7 @@
     "build": "node scripts/build.js",
     "parse": "node scripts/parse.js",
     "test": "node scripts/test.js",
+    "cfml:lint": "node scripts/cfml-lint.js",
     "docswasm": "node scripts/docswasm.js",
     "install": "node-gyp-build",
     "prestart": "tree-sitter build --wasm",

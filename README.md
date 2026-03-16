@@ -220,6 +220,17 @@ The `cfquery` grammar (`source.cfquery`) is a SQL dialect tailored for CFML:
 
 This structure is intended to give downstream tools (linters, refactorings, security scanners) a stable, vendor-neutral view of CFML SQL while remaining friendly to common PostgreSQL/MySQL/SQL Server constructs.
 
+## CFML linter (experimental)
+
+An experimental linter is included that builds on top of these grammars.
+
+- **Core**: implemented under `linter/`, with `lintFile(path, source, config)` as the primary programmatic entry point.
+- **Rules**: initial rules focus on:
+  - Query safety and scoping inside `cfquery` SQL (`cfquery-unscoped-variable`, `cfquery-missing-parameterization`).
+  - Writes to global CF scopes (`cfml-global-scope-write`).
+- **CLI**: run `npm run cfml:lint -- <files-or-directories>` to lint `.cfc`, `.cfm` and `.cfs` files.
+- **Rule reference**: see `LINTER_RULES.md` for details and examples of the available rules.
+
 ## License
 
 MIT
