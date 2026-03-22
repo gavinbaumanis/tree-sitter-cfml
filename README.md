@@ -111,6 +111,14 @@ parser.SetLanguage(sitter.NewLanguage(tree_sitter_cfml.LanguageCfscript()))
 parser.SetLanguage(sitter.NewLanguage(tree_sitter_cfml.LanguageCfquery()))
 ```
 
+## Agent and AI assistant guidance
+
+**[`AGENTS.md`](AGENTS.md)** is **model- and tool-agnostic**: ordinary Markdown for **any** AI assistant or human contributor (workflow, **done** criteria, **CFML** expectations such as testing with **Lucee** and portable CFML—see that file).
+
+**Cursor:** **Enforceable** rules for Cursor are git-tracked under **[`.cursor/rules/`](.cursor/rules/)** as **`*.mdc`** files (Markdown with YAML frontmatter). They are part of the repo like other files—**clone** / **pull** / **checkout** include them. Copy **`.cursor/rules/`** only if you want the same material in another project.
+
+**Other IDEs and assistants:** There is **no** universal standard that all tools read automatically. The **`.mdc`** content is reusable Markdown; you can paste it into your product’s **project rules**, **custom instructions**, or similar feature, or place it wherever your IDE expects—**filenames and paths are Cursor-specific here**, so adapt location and naming to match **your** editor or assistant (see its documentation). If a tool does not support the same frontmatter, you may need to strip or adjust the YAML block at the top of each file.
+
 ## Development
 
 ### Requirements
@@ -176,7 +184,7 @@ All four grammars share a common base defined in `common/define-grammar.js`, wit
 
 ```
 common/
-  define-grammar.js   # shared grammar rules for all three dialects
+  define-grammar.js   # shared grammar rules for all dialects
   scanner.h           # external scanner (C)
   tag.h               # HTML/CF tag type definitions
 

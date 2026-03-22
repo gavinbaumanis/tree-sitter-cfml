@@ -61,3 +61,7 @@ npm run docswasm
 - `test/` - Test files
 - `bindings/` - Language bindings (Node, Python, Rust, Go, Swift)
 - `queries/` - Tree-sitter queries
+
+## Agent / Cursor conventions
+
+Tracked at the repo root: **`AGENTS.md`** (workflow, done bar, CFML runtime expectations) and **`.cursor/rules/*.mdc`** (enforceable Cursor rules). Use those when using AI or Cursor on this project; do not rely on outdated references to a separate `docs/` copy of rules.

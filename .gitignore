@@ -65,7 +65,10 @@ Thumbs.db
 *.swo
 .idea/
 .vscode/
-.cursor/
+# Cursor: track project rules; ignore other local Cursor data
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 
 # Archives
 *.tar.gz

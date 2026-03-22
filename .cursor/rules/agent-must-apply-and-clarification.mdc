@@ -1,0 +1,26 @@
+---
+description: Ambiguous briefs, MUST APPLY capture, no duplicate rules
+alwaysApply: true
+---
+
+# Clarification
+
+If the human’s directions are **ambiguous**, ask **targeted questions** before substantial or irreversible work so the task can be completed **without** later follow-up from the human.
+
+# MUST APPLY knowledge
+
+When the conversation reveals **new** requirements that must hold in **future** sessions:
+
+- Treat **`you must`**, **`you should always`**, and similar phrasing as **MUST APPLY** unless clearly rhetorical.
+- Use **judgment**: if the human would reasonably intend a hard requirement, record it as MUST APPLY even if they did not say “MUST APPLY” explicitly.
+- Record each MUST APPLY in **exactly one** place: **`AGENTS.md`** **or** a **`.mdc`** file under **`.cursor/rules/`**—**never** the same requirement in both.
+- Prefer **`.mdc` rules** for **enforceable** constraints; use **`AGENTS.md`** for **workflow and project context** that does not fit a narrow rule file.
+
+# No duplication
+
+- **Do not** duplicate the same rule across two files.
+- **Do not** add a redundant **`AGENTS.md`** entry when the intent is already covered by an existing **`AGENTS.md`** bullet or by a **`.cursor/rules/*.mdc`** rule.
+
+# Editing rules
+
+Edit **`.cursor/rules/*.mdc`** in this repository when adding or changing enforceable agent rules. **Do not** maintain a second copy of the same rule elsewhere.
