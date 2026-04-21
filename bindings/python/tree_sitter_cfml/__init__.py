@@ -14,6 +14,8 @@ def _get_query(name, file):
 def __getattr__(name):
     if name == "HIGHLIGHTS_QUERY":
         return _get_query("HIGHLIGHTS_QUERY", "highlights.scm")
+    if name == "INDENTS_QUERY":
+        return _get_query("INDENTS_QUERY", "indents.scm")
     if name == "INJECTIONS_QUERY":
         return _get_query("INJECTIONS_QUERY", "injections.scm")
     if name == "TAGS_QUERY":
@@ -28,6 +30,7 @@ __all__ = [
     "language_cfscript",
     "language_cfquery",
     "HIGHLIGHTS_QUERY",
+    "INDENTS_QUERY",
     "INJECTIONS_QUERY",
     "TAGS_QUERY",
 ]

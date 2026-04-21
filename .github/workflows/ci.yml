@@ -29,6 +29,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: mingw-w64-x86_64-gcc
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'

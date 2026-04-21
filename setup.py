@@ -1,9 +1,7 @@
-from os import path
 from platform import system
 from sysconfig import get_config_var
 
 from setuptools import Extension, find_packages, setup
-from setuptools.command.build import build
 from setuptools.command.egg_info import egg_info
 from wheel.bdist_wheel import bdist_wheel
 
@@ -33,18 +31,7 @@ macros: list[tuple[str, str | None]] = [
 if limited_api := not get_config_var("Py_GIL_DISABLED"):
     macros.append(("Py_LIMITED_API", "0x030A0000"))
 
-if system() != "Windows":
-    cflags = ["-std=c11", "-fvisibility=hidden"]
-else:
-    cflags = ["/std:c11", "/utf-8"]
-
-
-class Build(build):
-    def run(self):
-        if path.isdir("queries"):
-            dest = path.join(self.build_lib, "tree_sitter_cfml", "queries")
-            self.copy_tree("queries", dest)
-        super().run()
+cflags = ["-std=c11", "-fvisibility=hidden"]
 
 
 class BdistWheel(bdist_wheel):
@@ -58,7 +45,9 @@ class BdistWheel(bdist_wheel):
 class EggInfo(egg_info):
     def find_sources(self):
         super().find_sources()
-        self.filelist.recursive_include("queries", "*.scm")
+        self.filelist.recursive_include(
+            "bindings/python/tree_sitter_cfml/queries", "*.scm"
+        )
         self.filelist.include("cfml/src/tree_sitter/*.h")
 
 
@@ -81,7 +70,6 @@ setup(
         )
     ],
     cmdclass={
-        "build": Build,
         "bdist_wheel": BdistWheel,
         "egg_info": EggInfo,
     },

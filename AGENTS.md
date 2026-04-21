@@ -2,7 +2,7 @@
 
 **Purpose:** Help agents complete work **accurately and efficiently** with minimal human interaction. This file is **model- and tool-agnostic** (plain Markdown for any AI assistant or human). **Enforceable** policies (clarification, MUST APPLY capture, deduplication) live in **`.cursor/rules/agent-must-apply-and-clarification.mdc`** - do not restate them here; that path is **Cursor-specific** (reusing those rules elsewhere: [`README.md`](README.md#agent-and-ai-assistant-guidance)).
 
-**Project setup, build, test, and grammar layout:** [`README.md`](README.md).
+**Project setup, build, test, and grammar layout:** [`README.md`](README.md). **Per-language artifacts** (Node, Rust, Python, Go): [`README — Bindings`](README.md#bindings) and `bindings/{node,rust,python,go}/`.
 
 ---
 
@@ -42,7 +42,9 @@
 
 Keep toolchain versions aligned with **CI** whenever possible. If a version **must** differ to achieve the goal, say so explicitly (e.g. in commit message or PR description).
 
-- **Windows:** Install **Visual Studio Build Tools** (or full VS) with the **Desktop development with C++** workload. **`npm test`** uses **`scripts/run-tests-msvc.cjs`** (`vcvars64.bat`, **`CC=cl`** / **`CXX=cl`**, temp **`.bat`** runner). Details for agents: **`.cursor/rules/tree-sitter-verify.mdc`**.
+- **Windows:** Install **MinGW-w64 GCC** (e.g. [WinLibs](https://winlibs.com/) or MSYS2) and put **`gcc`** / **`g++`** on **`PATH`** — same as [README — Development — Windows](README.md#windows). **`npm test`** runs **`node scripts/test.js`** (no MSVC). If **`node-gyp`** chooses Visual Studio over MinGW, set **`CC`** / **`CXX`** or reorder **`PATH`** so MinGW wins.
+
+- **Bindings:** CI does **not** run **`npm run testbindings`**, **`cargo test`**, **`go test`** on **`bindings/go`**, or Python **`unittest`** for **`bindings/python`**. Those are manual / optional before releases or binding edits; behavior and query packaging rules are documented under [README — Binding behavior and query sources](README.md#binding-behavior-and-query-sources).
 
 ---
 

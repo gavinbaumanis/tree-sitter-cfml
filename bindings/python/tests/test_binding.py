@@ -27,3 +27,9 @@ class TestLanguage(TestCase):
             tree_sitter.Language(tree_sitter_cfml.language_cfquery())
         except Exception:
             self.fail("Error loading CFQUERY grammar")
+
+    def test_queries_are_packaged(self):
+        self.assertIn("(program)", tree_sitter_cfml.HIGHLIGHTS_QUERY)
+        self.assertTrue(tree_sitter_cfml.INDENTS_QUERY.strip())
+        self.assertIn("injection.language", tree_sitter_cfml.INJECTIONS_QUERY)
+        self.assertIn("@definition.function", tree_sitter_cfml.TAGS_QUERY)

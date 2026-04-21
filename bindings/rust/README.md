@@ -10,7 +10,7 @@ tree-sitter = "0.25"
 tree-sitter-cfml = "0.26.2"
 ```
 
-The crate exposes [`LanguageFn`](https://docs.rs/tree-sitter-language/*/tree_sitter_language/struct.LanguageFn.html) values via [`tree-sitter-language`](https://crates.io/crates/tree-sitter-language).
+The crate exposes **`LANGUAGE_CFML`**, **`LANGUAGE_CFHTML`**, **`LANGUAGE_CFSCRIPT`**, and **`LANGUAGE_CFQUERY`** as [`LanguageFn`](https://docs.rs/tree-sitter-language/*/tree_sitter_language/struct.LanguageFn.html) values (crate dependency [`tree-sitter-language`](https://crates.io/crates/tree-sitter-language)). **`HIGHLIGHTS_QUERY`**, **`INJECTIONS_QUERY`**, and **`TAGS_QUERY`** embed **`cfml/queries/*.scm`** only (aligned with the Python binding’s packaged queries). **`cfhtml/`**, **`cfscript/`**, and **`cfquery/`** query files live in the repo under each grammar’s **`queries/`** directory if you need dialect-specific **`.scm`** strings.
 
 ## Example
 

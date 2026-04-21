@@ -22,17 +22,8 @@
         "cfquery/src/scanner.c",
         "bindings/node/binding.cc",
       ],
-      "conditions": [
-        ["OS!='win'", {
-          "cflags_c": [
-            "-std=c11",
-          ],
-        }, { # OS == "win"
-          "cflags_c": [
-            "/std:c11",
-            "/utf-8",
-          ],
-        }],
+      "cflags_c": [
+        "-std=c11",
       ],
     }
   ]
