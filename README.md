@@ -47,13 +47,12 @@ All four bindings expose **every** grammar (**cfml**, **cfhtml**, **cfscript**, 
 
 **Go** — [`bindings/go`](bindings/go/) exposes **`LanguageCfml()`**, **`LanguageCfhtml()`**, **`LanguageCfscript()`**, **`LanguageCfquery()`** only; **CGO** and **`gcc`** are required. Queries are **not** embedded (usual for **`go-tree-sitter`**); load **`.scm`** from this repository.
 
-**CI vs local checks** — [GitHub Actions](.github/workflows/ci.yml) runs **`npm install`**, **`npm test`**, and **`npm run lint`** only (no **`npm run build`**). It does **not** run **`npm run testbindings`**, **`cargo test`**, **`go test`**, or Python tests. Before a release or binding change, run those locally when relevant:
+**CI vs local checks** — [GitHub Actions](.github/workflows/ci.yml) runs **`npm install`**, **`npm test`**, **`npm run testbindings`**, and **`npm run lint`** (no **`npm run build`**; generated **`cf*/src/`** are committed). It does **not** run **`cargo test`**, **`go test`**, or Python **`unittest`**. Before a release or binding change, run those locally when relevant:
 
 ```bash
-npm run testbindings
 cargo test -p tree-sitter-cfml
 CGO_ENABLED=1 go test ./bindings/go/...
-python -m unittest bindings.python.tests.test_binding   # from repo root, with package on PYTHONPATH or after pip install -e .
+python -m unittest bindings.python.tests.test_binding   # after pip install -e ".[core]" from repo root
 ```
 
 ## Playground
@@ -227,7 +226,7 @@ Commit **`go.sum`** alongside **`go.mod`** (`go mod tidy` refreshes it).
 
 #### CI
 
-CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): `npm install`, `npm test`, `npm run lint` on Ubuntu, macOS, and Windows (Windows installs **MinGW GCC** via **msys2/setup-msys2** before `npm install`). It does not run `npm run build` (generated `cf*/src/` files are committed) or the extra binding checks listed under **[Bindings: behavior and query sources](#binding-behavior-and-query-sources)**.
+CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): `npm install`, `npm test`, `npm run testbindings`, `npm run lint` on Ubuntu, macOS, and Windows (Windows installs **MinGW GCC** via **msys2/setup-msys2** before `npm install`). It does not run `npm run build` (generated `cf*/src/` files are committed) or **Rust / Go / Python** binding tests — see **[Bindings: behavior and query sources](#binding-behavior-and-query-sources)** for local commands.
 
 #### Tree-sitter CLI
 

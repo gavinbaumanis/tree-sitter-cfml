@@ -44,7 +44,7 @@ Keep toolchain versions aligned with **CI** whenever possible. If a version **mu
 
 - **Windows:** Install **MinGW-w64 GCC** (e.g. [WinLibs](https://winlibs.com/) or MSYS2) and put **`gcc`** / **`g++`** on **`PATH`** — same as [README — Development — Windows](README.md#windows). **`npm test`** runs **`node scripts/test.js`** (no MSVC). If **`node-gyp`** chooses Visual Studio over MinGW, set **`CC`** / **`CXX`** or reorder **`PATH`** so MinGW wins.
 
-- **Bindings:** CI does **not** run **`npm run testbindings`**, **`cargo test`**, **`go test`** on **`bindings/go`**, or Python **`unittest`** for **`bindings/python`**. Those are manual / optional before releases or binding edits; behavior and query packaging rules are documented under [README — Binding behavior and query sources](README.md#binding-behavior-and-query-sources).
+- **Bindings:** CI runs **`npm run testbindings`** with **`npm test`** / **`npm run lint`**. It does **not** run **`cargo test`**, **`go test`** on **`bindings/go`**, or Python **`unittest`** for **`bindings/python`** — run those locally before releases or binding edits when relevant; see [README — Binding behavior and query sources](README.md#binding-behavior-and-query-sources).
 
 ---
 

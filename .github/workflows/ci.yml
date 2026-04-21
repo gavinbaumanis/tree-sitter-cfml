@@ -23,6 +23,7 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm test
+      - run: npm run testbindings
       - run: npm run lint
 
   test_windows:
@@ -39,4 +40,5 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm test
+      - run: npm run testbindings
       - run: npm run lint
